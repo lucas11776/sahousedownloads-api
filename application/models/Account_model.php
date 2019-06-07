@@ -45,7 +45,7 @@ class Account_model extends CI_Model
                         ->or_where('username', $id)
                         ->or_where('email', $id)
                         ->get('accounts')
-                        ->result_array();
+                        ->result_array()[0] ?? [];
     }
 
     /**
