@@ -50,12 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller']   = 'welcome';
-$route['register']             = 'register/index';
-$route['login']                = 'login/index';
-$route['song']                 = 'song/index';
-$route['song/latest']          = 'song/index';
-$route['song/most/downloaded'] = 'song/most_download';
-$route['song/edit']            = 'song/update';
-$route['upload/song']          = 'song_upload/index';
+$route['register']             = 'register/index';      // DONE (Auth)
+$route['login']                = 'login/index';         // DONE (Auth)
+$route['song']                 = 'song/index';          // NOT DONE
+$route['song/latest']          = 'song/index';          // NOT DONE
+$route['song/most/downloaded'] = 'song/most_download';  // NOT DONE
+$route['song/edit']            = 'song/update';         // NOT DONE
+$route['upload/song']          = 'upload_song/index';   // DONE (Auth)
+$route['upload/album']         = 'upload_album/index';  // ONGOING
+$route['password/recover']     = 'password/recover';    // NOT DONE
+$route['password/reset']       = 'password/reset';      // NOT DONE
 $route['404_override']         = '';
 $route['translate_uri_dashes'] = FALSE;
