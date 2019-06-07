@@ -69,7 +69,6 @@ class Upload_song extends CI_Controller
 
         // initialize picture upload configurations
         $this->upload->initialize($config, true);
-        
 
         if($this->upload->do_upload('audio') === false)
         {
