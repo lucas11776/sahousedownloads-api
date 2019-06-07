@@ -18,25 +18,31 @@ class Login extends CI_Controller
         $data = $this->input->post();
 
         // get account by username/email
-        $account = $this->account_model->get_user($data['username']);
+        $account = $this->account_model->get_full_user($data['username']);
 
-        if(count($account ?? []) === 0 && ($account['password'] ?? null) !== $data['password'])
+        // decrypt password if username is found
+        if(isset($account['password'])) $account['password'] = $this->encryption->decrypt($account['password']);
+
+        if(count($account) === 0 || ($account['password'] ?? null) !== $data['password'])
         {
             $this->rest_api->fail([
-                'message' => 'Username or Password does not exist please try again.'
+                'message' => 'Invalid username or password please try again.'
             ]);
 
             return;
         }
 
         $webToken = [
-            'user_id' => $account['user_id'],
-            'expire'  => time() * (60*60*24*7)
+            'user_id'    => $account['user_id'],
+            'expire'     => time() * (60*60*24*7),
+            'ip_address' => $this->input->ip_address()
         ];
 
-        $webToken = json_encode($webToken);
+        $webToken = $this->encryption->encrypt(json_encode($webToken));
 
-        $this->rest_api->success($webToken);
+        $this->rest_api->success([
+            'token' => $webToken
+        ]);
     }
 
 }

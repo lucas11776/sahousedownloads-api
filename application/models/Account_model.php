@@ -49,6 +49,22 @@ class Account_model extends CI_Model
     }
 
     /**
+     * Get Full User Account
+     * 
+     * @return any id
+     * @return array
+     */
+    public function get_full_user(string $id)
+    {
+        return $this->db->where('user_id', $id)
+                        ->limit(1)
+                        ->or_where('username', $id)
+                        ->or_where('email', $id)
+                        ->get('accounts')
+                        ->result_array()[0] ?? [];
+    }
+
+    /**
      * Insert Client Account Details
      * 
      * @param array info
