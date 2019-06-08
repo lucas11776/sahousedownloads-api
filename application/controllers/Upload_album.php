@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Upload_album extends CI_Controller
 {
+    /**
+     * @API (upload/album)
+     * 
+     * upload album to database
+     * 
+     * @return void
+     */
     public function index()
     {
         $this->form_validation->set_rules('picture', 'picture', 'callback_picture_validation');
@@ -39,6 +46,14 @@ class Upload_album extends CI_Controller
         ]);
     }
 
+    /**
+     * validate picture file and upload file.
+     * 
+     * if file was uploaded successfuly assign full
+     * file (picture) path to post data array
+     * 
+     * @return void
+     */
     public function picture_validation()
     {
         $config = $this->album_model::PICTURE_CONFIG; 

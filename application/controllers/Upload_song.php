@@ -3,6 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Upload_song extends CI_Controller
 {
+    /**
+     * @API (upload/song)
+     * 
+     * upload song to database
+     * 
+     * @return void
+     */
     public function index()
     {
         $this->form_validation->set_rules('picture', 'picture', 'callback_picture_validation');
@@ -44,13 +51,21 @@ class Upload_song extends CI_Controller
 
     }
 
+    /**
+     * validate picture file and upload file.
+     * 
+     * if file was uploaded successfuly assign full
+     * file (picture) path to post data array
+     * 
+     * @return void
+     */
     public function picture_validation()
     {
         $config = $this->song_model::PICTURE_CONFIG; 
         $config['file_name'] = url_title($this->input->post('title') ?? 'TEMP_FILE');
 
         // initialize picture upload configurations
-        $this->upload->initialize($config, false);
+        $this->upload->initialize($config);
 
         if($this->upload->do_upload('picture') === false)
         {
@@ -62,13 +77,21 @@ class Upload_song extends CI_Controller
         $_POST['picture'] = $this->song_model->picture_dir() . $this->upload->data('file_name');
     }
 
+    /**
+     * validate audio file and upload file.
+     * 
+     * if file was uploaded successfuly assign full
+     * file (audio) path to post data array
+     * 
+     * @return void
+     */
     public function audio_validation()
     {
         $config = $this->song_model::AUDIO_CONFIG;
         $config['file_name'] = url_title($this->input->post('title') ?? 'TEMP_FILE');
 
         // initialize picture upload configurations
-        $this->upload->initialize($config, true);
+        $this->upload->initialize($config);
 
         if($this->upload->do_upload('audio') === false)
         {
@@ -80,6 +103,13 @@ class Upload_song extends CI_Controller
         $_POST['audio'] = $this->song_model->audio_dir() . $this->upload->data('file_name');
     }
 
+    /**
+     * validate if album exist
+     * 
+     * check if album exist under the current user
+     * 
+     * @return boolean
+     */
     public function album_validation($album_id)
     {
         if(!empty($album_id))

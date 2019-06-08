@@ -3,7 +3,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register extends CI_Controller
 {
-
+    /**
+     * @API (register)
+     * 
+     * validate user data and insert data to database
+     * 
+     * @return void
+     */
     public function index()
     {
         $this->form_validation->set_rules('username',         'username', 'required|min_length[3]|max_length[100]|callback_username_exist');
@@ -45,6 +51,13 @@ class Register extends CI_Controller
         ]);
     }
 
+    /**
+     * validate username/email 
+     * 
+     * check if username/email doen not exist in database
+     * 
+     * @return void
+     */
     public function username_exist($email)
     {
         $email_exist = $this->account_model->get_user($email);

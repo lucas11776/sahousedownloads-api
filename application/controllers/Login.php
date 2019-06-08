@@ -3,6 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller
 {
+    /**
+     * @API (login)
+     * 
+     * check if username and password exist in database
+     * and if exist return web token to be submitted
+     * under Authorization headers
+     * 
+     * @return void
+     */
     public function index()
     {
         $this->form_validation->set_rules('username', 'username', 'required');
