@@ -12,7 +12,9 @@ class Songs extends CI_Controller
      */
     public function index()
     {
-
+        $this->rest_api->response(
+            $this->song_model->latest_most_downloaded()
+        );
     }
 
     /**
@@ -24,7 +26,9 @@ class Songs extends CI_Controller
      */
     public function latest()
     {
-
+        $this->rest_api->response(
+            $this->song_model->latest()
+        );
     }
 
     /**
@@ -36,7 +40,9 @@ class Songs extends CI_Controller
      */
     public function most_downloaded()
     {
-        
+        $this->rest_api->response(
+            $this->song_model->most_downloaded()
+        );
     }
     
     /**

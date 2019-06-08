@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Song_model extends CI_Model
 {
     /**
-     * Picture Upload Configurations
+     * picture upload configurations
      * 
      * @var string
      */
@@ -14,7 +14,7 @@ class Song_model extends CI_Model
     ];
 
     /**
-     * Audio Upload Configurations
+     * audio upload configurations
      * 
      * @var array
      */
@@ -24,7 +24,7 @@ class Song_model extends CI_Model
     ];
 
     /**
-     * Get Picture Dir
+     * get picture dir
      * 
      * @return string
      */
@@ -34,7 +34,7 @@ class Song_model extends CI_Model
     }
 
     /**
-     * Get Audio Dir
+     * get audio dir
      * 
      * @return string
      */
@@ -44,7 +44,79 @@ class Song_model extends CI_Model
     }
 
     /**
-     * Insert Song Table
+     * get 50 lastest and most downloaded songs
+     * 
+     * @return array
+     */
+    public function search(string $term, int $limit = 50)
+    {
+        return $this->db->like('title',$term)
+                        ->or_like('artist',$term)
+                        ->order_by('downloads','DESC')
+                        ->order_by('date','DESC')
+                        ->limit($limit)
+                        ->get('songs')
+                        ->result_array();
+    }
+
+    /**
+     * get song be selection
+     * 
+     * @param array where
+     * @return array
+     */
+    public function get(array $where, int $limit = 50)
+    {
+        return $this->db->where($where)
+                        ->limit($limit)
+                        ->get('songs')
+                        ->result_array();
+    }
+
+    /**
+     * get 50 lastest and most downloaded songs
+     * 
+     * @return array
+     */
+    public function latest_most_downloaded(int $limit = 50)
+    {
+        return $this->db->order_by('downloads','DESC')
+                        ->order_by('song_id','RANDOM')
+                        ->limit($limit)
+                        ->get('songs')
+                        ->result_array();
+    }
+
+    /**
+     * get 50 lastest and most downloaded songs
+     * 
+     * @return array
+     */
+    public function latest(int $limit = 50)
+    {
+        return $this->db->order_by('date','DESC')
+                        ->order_by('song_id','RANDOM')
+                        ->limit($limit)
+                        ->get('songs')
+                        ->result_array();
+    }
+
+    /**
+     * get 50 lastest and most downloaded songs
+     * 
+     * @return array
+     */
+    public function most_downloaded(int $limit = 50)
+    {
+        return $this->db->order_by('downloads','DESC')
+                        ->limit($limit)
+                        ->get('songs')
+                        ->result_array();
+    }
+
+
+    /**
+     * insert song table
      * 
      * @param array song
      * @return boolean
@@ -64,7 +136,7 @@ class Song_model extends CI_Model
     }
 
     /**
-     * Updated Song Details
+     * updated song details
      * 
      * @param array details
      * @return boolean
