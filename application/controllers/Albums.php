@@ -91,7 +91,27 @@ class Albums extends CI_Controller
      */
     public function search($term)
     {
-        
+        if(!is_string($term))
+        {
+            $this->rest_api->fail([
+                'message' => 'Search term must be a string.'
+            ]);
+
+            return;
+        }
+
+        $search_result = $this->album_model->search($term);
+
+        if($search_result === false)
+        {
+            $this->rest_api->fail([
+                'message' => 'Something went wrog when tring to connect to database please try again later'
+            ]);
+
+            return;
+        }
+
+        $this->rest_api->response($search_result);
     }
 
     /**

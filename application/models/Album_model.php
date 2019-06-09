@@ -35,7 +35,8 @@ class Album_model extends CI_Model
                     (SELECT COUNT(*)       FROM songs WHERE songs.album = albums.album_id) AS songs,
                     (SELECT SUM(downloads) FROM songs WHERE songs.album = albums.album_id) AS downloads
                 FROM albums 
-                WHERE (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) != 0 AND title LIKE '%{$term}%' 
+                WHERE (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) != 0 AND
+                title LIKE '%{$term}%' OR artist LIKE '%{$term}%'
                 ORDER BY date,downloads DESC LIMIT {$limit}";
         return $this->db->query($sql)->result_array();
     }
