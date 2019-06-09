@@ -57,19 +57,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 *-------------------------------------------------------------------------------*
 
 */
-$route['default_controller']      = 'api/index';
-$route['register']                = 'register/index';       // DONE (Auth)
-$route['login']                   = 'login/index';          // DONE (Auth)
-$route['songs']                   = 'songs/index';          // DONE
-$route['song/latest']             = 'songs/index';          // DONE
-$route['song/most/downloaded']    = 'songs/most_downloaded';  // ONGOING
-$route['songs/edit/(:any)']       = 'songs/update/$1';      // NOT DONE
-$route['albums']                  = 'albums/index';         // NOT DONE
-$route['albums/most/downloaded']  = 'song/update';          // NOT DONE
-$route['upload/song']             = 'upload_song/index';    // DONE (Auth)
-$route['upload/album']            = 'upload_album/index';   // DONE (Auth)
-$route['upload/blog']             = 'upload_blog/index';    // DONE (Auth)
-$route['password/recover']        = 'password/recover';     // NOT DONE
-$route['password/reset']          = 'password/reset';       // NOT DONE
-$route['404_override']            = 'api/page_not_found';
+$route['default_controller']      = 'api/index';                // DEFUALT API ROUTE
+$route['register']                = 'register/index';           // DONE (Auth)
+$route['login']                   = 'login/index';              // DONE (Auth)
+$route['songs']                   = 'songs/index';              // DONE
+$route['song/latest']             = 'songs/index';              // DONE
+$route['song/most/downloaded']    = 'songs/most_downloaded';    // NOT DONE
+$route['songs/edit/(:any)']       = 'songs/update/$1';          // NOT DONE
+$route['albums']                  = 'albums/index';             // NOT DONE
+$route['albums/most/downloaded']  = 'albums/update';            // DONE
+$route['albums/search/(:any)']    = 'albums/search/$1';         // ONGOING
+$route['albums/(:any)']           = 'albums/single_album/$1';   // DONE
+$route['upload/song']             = 'upload_song/index';        // DONE (Auth)
+$route['upload/album']            = 'upload_album/index';       // DONE (Auth)
+$route['upload/blog']             = 'upload_blog/index';        // DONE (Auth)
+$route['newsletter/subscribe']    = 'newsletter/subscribe';     // NOT DONE
+$route['newsletter/unsubscribe']  = 'newsletter/unsubscribe';   // NOT DONE
+$route['password/recover']        = 'password/recover';         // NOT DONE
+$route['password/reset']          = 'password/reset';           // NOT DONE
+$route['404_override']            = 'api/page_not_found';       // INVALID REQUEST
 $route['translate_uri_dashes']    = FALSE;

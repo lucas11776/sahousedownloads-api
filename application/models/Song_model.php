@@ -65,7 +65,7 @@ class Song_model extends CI_Model
      * @param array where
      * @return array
      */
-    public function get(array $where, int $limit = 50)
+    public function get_songs(array $where, int $limit = 50)
     {
         return $this->db->where($where)
                         ->limit($limit)

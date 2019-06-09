@@ -12,7 +12,9 @@ class Albums extends CI_Controller
      */
     public function index()
     {
-
+        $this->rest_api->response(
+            $this->album_model->latest_most_downloaded()
+        );
     }
 
     /**
@@ -24,7 +26,9 @@ class Albums extends CI_Controller
      */
     public function latest()
     {
-
+        $this->rest_api->response(
+            $this->album_model->latest()
+        );
     }
 
     /**
@@ -36,7 +40,9 @@ class Albums extends CI_Controller
      */
     public function most_downloaded()
     {
-
+        $this->rest_api->response(
+            $this->album_model->most_downloaded()
+        );
     }
 
     /**
@@ -48,7 +54,32 @@ class Albums extends CI_Controller
      */
     public function single_album($id)
     {
-        
+        if(!is_numeric($id))
+        {
+            $this->rest_api->fail([
+                'message' => 'Invalid Album ID.'
+            ]);
+
+            return;
+        }
+
+        $album = $this->album_model->get_albums([
+            'album_id' => $id
+        ])[0] ?? [];
+
+        // check if album exist
+        if(count($album) === 0)
+        {
+            $this->rest_api->response([
+                'message' => 'Album is not found in database it may be delete by user.'
+            ]);
+
+            return;
+        }
+
+        $album['songs'] = $this->song_model->get_songs(['album' => $album['album_id']]);
+
+        $this->rest_api->response($album);
     }
 
     /**
@@ -60,7 +91,7 @@ class Albums extends CI_Controller
      */
     public function search($term)
     {
-
+        
     }
 
     /**
