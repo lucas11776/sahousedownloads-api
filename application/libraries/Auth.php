@@ -3,25 +3,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth {
 
+    protected $CI;
+
     /**
      * User Details
      * 
      * @var array
      */
-    public $user = null;
+    private $user = null;
 
     public function __construct()
     {
+        // Assign the CodeIgniter super-object
+        $this->CI =& get_instance();
         
-        $webToken = '';
-        $webToken = $this->encryption->decrypt($webToken);
-        $webToken = json_decode($webToken, true);
+        // loaded requiered reasource
+        $this->CI->load->library('encryption');
+        $this->CI->load->model('auth_model');
+        $this->CI->load->model('account_model');
 
-        if(is_array($webToken))
-        {
-            // get user details
-        }
+        $authorizetion = apache_request_headers()['Authorization'] ?? 
+                         apache_request_headers()['authorization'] ?? 
+                         null;
 
+        $token = json_decode($this->CI->encryption->decrypt($authorizetion), true);
+
+        if($token === false || time() > $token['expire'] ?? 0) return;
+
+        $this->user = $this->CI->account_model->get_user($token['user_id']) ?? null;
+    }
+
+    public function user_account()
+    {
+        return $this->user;
     }
 
     /**
@@ -43,7 +57,7 @@ class Auth {
      */
     public function user_id()
     {
-
+        return $this->user['user_id'] ?? null;
     }
 
     /**
