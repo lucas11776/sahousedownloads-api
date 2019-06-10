@@ -32,12 +32,12 @@ class Album_model extends CI_Model
     public function search(string $term, int $limit = 50)
     {
         $sql = "SELECT DISTINCT *,
-                    (SELECT COUNT(*)       FROM songs WHERE songs.album = albums.album_id) AS songs,
+                    (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) AS songs,
                     (SELECT SUM(downloads) FROM songs WHERE songs.album = albums.album_id) AS downloads
                 FROM albums 
                 WHERE (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) != 0 AND
                 title LIKE '%{$term}%' OR artist LIKE '%{$term}%'
-                ORDER BY date,downloads DESC LIMIT {$limit}";
+                ORDER BY downloads DESC LIMIT {$limit}";
         return $this->db->query($sql)->result_array();
     }
 
@@ -50,7 +50,7 @@ class Album_model extends CI_Model
     public function latest_most_downloaded(int $limit = 50)
     {
         $sql = "SELECT DISTINCT albums.*,
-                    (SELECT COUNT(*)       FROM songs WHERE songs.album = albums.album_id) AS songs,
+                    (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) AS songs,
                     (SELECT SUM(downloads) FROM songs WHERE songs.album = albums.album_id) AS downloads
                 FROM albums 
                 WHERE (SELECT COUNT(*) FROM songs WHERE songs.album = albums.album_id) != 0

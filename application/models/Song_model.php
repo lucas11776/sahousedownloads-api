@@ -149,7 +149,7 @@ class Song_model extends CI_Model
             'album'  => $details['album']
         ];
 
-        return $this->db->where('user_id', $details['user_id'])
+        return $this->db->where('song_id', $details['song_id'])
                         ->update('songs', $data);
     }
     

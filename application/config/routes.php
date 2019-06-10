@@ -52,9 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 
-*-----------------------------------------------------------------------------------*
-|       API END POINT          |        CONTROLLER            |       RIGHTS        |
-*--------------------------------------------------------------------=--------------*
+*---------------------------------------------------------------------------------------*
+|       API END POINT          |        CONTROLLER            |         RIGHTS          |
+*---------------------------------------------------------------------------------------*
 
 */
 $route['default_controller']      = 'api/index';                // DEFUALT API ROUTE
@@ -62,16 +62,18 @@ $route['register']                = 'register/index';           // DONE (Auth)
 $route['login']                   = 'login/index';              // DONE (Auth)
 $route['songs']                   = 'songs/index';              // DONE
 $route['song/latest']             = 'songs/index';              // DONE
-$route['song/most/downloaded']    = 'songs/most_downloaded';    // NOT DONE
-$route['songs/edit/(:any)']       = 'songs/update/$1';          // NOT DONE
-$route['albums']                  = 'albums/index';             // NOT DONE
+$route['song/most/downloaded']    = 'songs/most_downloaded';    // DONE
+$route['songs/edit/(:any)']       = 'songs/edit/$1';            // DONE (Auth)
+$route['songs/delete']            = 'songs/delete';             // NOT DONE
+$route['albums']                  = 'albums/index';             // DONE
 $route['albums/most/downloaded']  = 'albums/update';            // DONE
 $route['albums/search/(:any)']    = 'albums/search/$1';         // DONE
+$route['albums/delete']           = 'albums/delete';            // NOT DONE 
 $route['albums/(:any)']           = 'albums/single_album/$1';   // DONE
 $route['upload/song']             = 'upload_song/index';        // DONE (Auth)
 $route['upload/album']            = 'upload_album/index';       // DONE (Auth)
 $route['upload/blog']             = 'upload_blog/index';        // DONE (Auth)
-$route['newsletter/subscribe']    = 'newsletter/subscribe';     // NOT DONE
+$route['newsletter/subscribe']    = 'newsletter/subscribe';     // ONGOING
 $route['newsletter/unsubscribe']  = 'newsletter/unsubscribe';   // NOT DONE
 $route['password/recover']        = 'password/recover';         // NOT DONE
 $route['password/reset']          = 'password/reset';           // NOT DONE

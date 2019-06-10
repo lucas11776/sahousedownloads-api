@@ -118,10 +118,10 @@ class Upload_song extends CI_Controller
                 'album_id' => $album_id,
                 'user_id'  => 1
             ];
-            $album = $this->album_model->get_album($data)[0] ?? [];
+            $album = $this->album_model->get_albums($data)[0] ?? [];
 
             if(count($album) === 0){
-                $this->form_validation->set_message('album_validation', 'Sorry {field} does not exist.');
+                $this->form_validation->set_message('album_validation', 'Album does not exist.');
 
                 return false;
             }
