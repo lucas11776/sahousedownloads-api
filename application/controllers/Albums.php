@@ -124,7 +124,7 @@ class Albums extends CI_Controller
      */
     public function delete($id)
     {
-
+        $this->auth->user();
     }
     
 }

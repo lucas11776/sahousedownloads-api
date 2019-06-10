@@ -12,6 +12,8 @@ class Upload_song extends CI_Controller
      */
     public function index()
     {
+        $this->auth->user();
+        
         $this->form_validation->set_rules('picture', 'picture', 'callback_picture_validation');
         $this->form_validation->set_rules('audio',   'audio',   'callback_audio_validation');
         $this->form_validation->set_rules('title',   'title',   'required|min_length[2]|max_length[50]');

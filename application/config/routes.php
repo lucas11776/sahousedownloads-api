@@ -58,23 +58,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 */
 $route['default_controller']      = 'api/index';                // DEFUALT API ROUTE
-$route['register']                = 'register/index';           // DONE (Auth)
-$route['login']                   = 'login/index';              // DONE (Auth)
-$route['songs']                   = 'songs/index';              // DONE
-$route['song/latest']             = 'songs/index';              // DONE
-$route['song/most/downloaded']    = 'songs/most_downloaded';    // DONE
+$route['register']                = 'register/index';           // (Auth) - Guest
+$route['login']                   = 'login/index';              // (Auth) - Guest
+$route['songs']                   = 'songs/index';              // (Open)
+$route['song/latest']             = 'songs/index';              // (Open)
+$route['song/most/downloaded']    = 'songs/most_downloaded';    // (Open)
 $route['songs/edit/(:any)']       = 'songs/edit/$1';            // DONE (Auth)
 $route['songs/delete']            = 'songs/delete';             // NOT DONE
-$route['albums']                  = 'albums/index';             // DONE
-$route['albums/most/downloaded']  = 'albums/update';            // DONE
-$route['albums/search/(:any)']    = 'albums/search/$1';         // DONE
+$route['albums']                  = 'albums/index';             // (Open)
+$route['albums/most/downloaded']  = 'albums/update';            // (Open)
+$route['albums/search/(:any)']    = 'albums/search/$1';         // (Open)
 $route['albums/delete']           = 'albums/delete';            // NOT DONE 
-$route['albums/(:any)']           = 'albums/single_album/$1';   // DONE
-$route['upload/song']             = 'upload_song/index';        // DONE (Auth)
-$route['upload/album']            = 'upload_album/index';       // DONE (Auth)
-$route['upload/blog']             = 'upload_blog/index';        // DONE (Auth)
-$route['newsletter/subscribe']    = 'newsletter/subscribe';     // NONE
-$route['newsletter/unsubscribe']  = 'newsletter/unsubscribe';   // DONE
+$route['albums/(:any)']           = 'albums/single_album/$1';   // (Open)
+$route['upload/song']             = 'upload_song/index';        // (Auth) - User
+$route['upload/album']            = 'upload_album/index';       // (Auth) - User
+$route['upload/blog']             = 'upload_blog/index';        // (Auth) - Editor
+$route['newsletter/subscribe']    = 'newsletter/subscribe';     // (Open)
+$route['newsletter/unsubscribe']  = 'newsletter/unsubscribe';   // (Open)
 $route['password/recover']        = 'password/recover';         // NOT DONE
 $route['password/reset']          = 'password/reset';           // NOT DONE
 $route['404_override']            = 'api/page_not_found';       // INVALID REQUEST

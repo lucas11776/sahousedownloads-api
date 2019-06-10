@@ -17,7 +17,7 @@ class Auth {
         // Assign the CodeIgniter super-object
         $this->CI =& get_instance();
         
-        // loaded requiered reasource
+        // Requiered Reasource
         $this->CI->load->library('encryption');
         $this->CI->load->model('auth_model');
         $this->CI->load->model('account_model');
@@ -47,7 +47,7 @@ class Auth {
     {
         http_response_code(401); // set response code to Unauthorized
 
-        die(json_decode(['message' => 'Unauthorized Access.']));
+        die(json_encode(['message' => 'Unauthorized Access.']));
     }
 
     /**
@@ -68,7 +68,7 @@ class Auth {
     public function guest()
     {
         if(
-            ($this->user['role'] ?? null) === null
+            $this->user['role'] == null
         )
         {
             return;
@@ -85,9 +85,9 @@ class Auth {
     public function user()
     {
         if(
-            ($this->user['role'] ?? null) === 1 || 
-            ($this->user['role'] ?? null) === 2 ||
-            ($this->user['role'] ?? null) === 3 
+            $this->user['role'] == 1 || 
+            $this->user['role'] == 2 ||
+            $this->user['role'] == 3 
         )
         {
             return;
@@ -104,8 +104,8 @@ class Auth {
     public function editor()
     {
         if(
-            ($this->user['role'] ?? null) === 2 ||
-            ($this->user['role'] ?? null) === 3 
+            $this->user['role'] == 2 ||
+            $this->user['role'] == 3 
         )
         {
             return;
@@ -121,7 +121,9 @@ class Auth {
      */
     public function admin()
     {
-        if(($this->user['role'] ?? null) === 3)
+        if(
+            $this->user['role'] == 3
+        )
         {
             return;
         }

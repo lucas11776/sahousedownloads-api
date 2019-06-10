@@ -12,6 +12,8 @@ class Upload_blog extends CI_Controller
      */
     public function index()
     {
+        $this->auth->editor();
+        
         $this->form_validation->set_rules('picture', 'picture', 'callback_picture_validation');
         $this->form_validation->set_rules('title',   'title',   'required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('text',    'text',    'required|min_length[2]');

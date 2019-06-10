@@ -66,6 +66,8 @@ class Songs extends CI_Controller
      */
     public function edit($id)
     {
+        $this->auth->user();
+        
         $this->form_validation->set_rules('song_id', 'song id', 'required|callback_song_validation');
         $this->form_validation->set_rules('title',   'title',   'required|min_length[2]|max_length[50]');
         $this->form_validation->set_rules('artist',  'artist',  'required|min_length[2]|max_length[50]');

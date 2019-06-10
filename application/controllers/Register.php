@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Register extends CI_Controller
 {
     /**
-     * @API (register)
+     * @API (register) - guest
      * 
      * validate user data and insert data to database
      * 
@@ -12,6 +12,8 @@ class Register extends CI_Controller
      */
     public function index()
     {
+        $this->auth->guest();
+
         $this->form_validation->set_rules('username',         'username', 'required|min_length[3]|max_length[100]|callback_username_exist');
         $this->form_validation->set_rules('email',            'email',    'required|valid_email|callback_username_exist');
         $this->form_validation->set_rules('name',             'name',     'required|min_length[2]|max_length[100]');
