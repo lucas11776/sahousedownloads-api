@@ -32,14 +32,14 @@ class Account_model extends CI_Model
     }
 
     /**
-     * Get User Account By id,email,username
+     * Get User Account By id,username
      * 
      * @param any id
      * @return array
      */
     public function get_user(string $id)
     {
-        return $this->db->select('user_id,date,role,picture,username,email,name,surname')
+        return $this->db->select('user_id,date,role,picture,username,name,surname')
                         ->where('user_id', $id)
                         ->limit(1)
                         ->or_where('username', $id)

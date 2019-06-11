@@ -58,12 +58,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 */
 $route['default_controller']      = 'api/index';                // DEFUALT API ROUTE
+$route['account/edit']            = 'account/edit';             // NOT DONE
+$route['account/change/password'] = 'account/upload_picture';   // NOT DONE
+$route['account/upload/picture']  = 'account/change_password';  // NOT DONE
+$route['account/(:any)']          = 'account/index/$1';         // (Open)
 $route['register']                = 'register/index';           // (Auth) - Guest
 $route['login']                   = 'login/index';              // (Auth) - Guest
 $route['songs']                   = 'songs/index';              // (Open)
 $route['song/latest']             = 'songs/index';              // (Open)
 $route['song/most/downloaded']    = 'songs/most_downloaded';    // (Open)
-$route['songs/edit/(:any)']       = 'songs/edit/$1';            // DONE (Auth)
+$route['songs/edit/(:any)']       = 'songs/edit/$1';            // (Auth) - User
 $route['songs/delete']            = 'songs/delete';             // NOT DONE
 $route['albums']                  = 'albums/index';             // (Open)
 $route['albums/most/downloaded']  = 'albums/update';            // (Open)
