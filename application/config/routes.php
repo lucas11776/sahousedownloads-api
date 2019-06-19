@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 */
 $route['default_controller']      = 'api/index';                // DEFUALT API ROUTE
 $route['account/edit']            = 'account/edit';             // NOT DONE
-$route['account/change/password'] = 'account/upload_picture';   // NOT DONE
+$route['account/change/password'] = 'account/change_password';   // NOT DONE
 $route['account/upload/picture']  = 'account/change_password';  // NOT DONE
 $route['account/(:any)']          = 'account/index/$1';         // (Open)
 $route['register']                = 'register/index';           // (Auth) - Guest

@@ -94,8 +94,8 @@ class Account_model extends CI_Model
     public function update(array $details)
     {
         $data = [
-            'name'    => $details,
-            'surname' => $details
+            'name'    => $details['name'],
+            'surname' => $details['surname']
         ];
         return $this->db->where('user_id', $details['user_id'])
                         ->update('accounts', $data);

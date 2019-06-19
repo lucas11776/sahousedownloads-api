@@ -68,7 +68,7 @@ class Auth {
     public function guest()
     {
         if(
-            $this->user['role'] == null
+            $this->user['role'] === null
         )
         {
             return;
